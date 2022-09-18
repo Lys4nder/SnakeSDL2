@@ -1,15 +1,6 @@
-//
-//  Snake.cpp
-//  Proiect
-//
-//  Created by Lysander Pitu on 27.03.2022.
-//
-
 #include "Snake.hpp"
 
-//constructorul de copiere
-//variabila head este o clasa de tipul SDL_Rect, adica un "rectangle" care are
-//coordonatele x,y, inaltimea h (height) si latimea w (width)
+//snake constructor
 Snake::Snake(int x, int y, int h, int w)
 {
     head.x=x;
@@ -18,7 +9,7 @@ Snake::Snake(int x, int y, int h, int w)
     head.w=w;
 }
 
-//afisarea corpului sarpelui, care "urmareste" capul
+//rendering the body of the snake which 'follows' the snake's head
 void Snake::display(SDL_Renderer* renderer)
 {
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 1);
@@ -28,7 +19,7 @@ void Snake::display(SDL_Renderer* renderer)
     });
 }
 
-//updatarea directiei de deplasare a capului
+//updating the direction of the snakes's head
 void Snake::updateDir(int dir)
 {
     switch (dir)
@@ -51,13 +42,7 @@ void Snake::updateDir(int dir)
 }
 
 /*
-generarea corpului sarpelui dupa ce a mancat un mar cu ajutorul
-librariei <deque> (double-ended-queue)
-am ales sa folosesc aceasta librariei deoarece astfel pot aloca dinamic si manipula
-mai usor sarpele, care de fapt este un simplu vector.
-functiile librariei permit insertii si eliminari mult mai eficiente decat daca as fi
-folosit un simplu vector
-mai multe aici:
+using <deque> lib in order to create the movement
  https://en.cppreference.com/w/cpp/container/deque
 */
 void Snake::snakeBody()
@@ -67,18 +52,18 @@ void Snake::snakeBody()
         rq.pop_back();
 }
 
-//updatarea pozitiei
+//updating pos
 void Snake::resetPos()
 {
     head.x=height/2;
     head.y=width/2;
 }
 
-//verificare daca capul sarpelui s-a lovit de corpul acestuia
+//checking if the head of the snake collided with its body
 bool Snake::selfColission()
 {
     bool hit=false;
-    //parcurgerea corpului sarpelui
+    
     std::for_each(rq.begin(), rq.end(), [&](auto &snake_segment)
     {
         if (head.x==snake_segment.x && head.y == snake_segment.y)
@@ -90,11 +75,11 @@ bool Snake::selfColission()
     return hit;
 }
 
-//verificare daca coordonatele marului generat (x_, y_) se afla pe corpul sarpelui
+//checking if the newly generated apple is on the snake's body
 bool Snake::appleIsOnSnake(int x_, int y_)
 {
     bool isOnSnake = true;
-    std::for_each(rq.begin(), rq.end(), [&](auto &snake_segment) //Verificare daca merele s-au generat pe corpul sarpelui
+    std::for_each(rq.begin(), rq.end(), [&](auto &snake_segment)
         {
         if (x_ != snake_segment.x && y_ != snake_segment.y)
             isOnSnake = false;
@@ -102,19 +87,19 @@ bool Snake::appleIsOnSnake(int x_, int y_)
     return isOnSnake;
 }
 
-//updatarea marimii sarpelui dupa ce a mancat un mar
+//updating the size after eating an apple
 void Snake::updateSize()
 {
     size+=6;
 }
 
-//resetarea pozitiei
+//size reset
 void Snake::resetSize()
 {
     size=1;
 }
 
-//returnarea coordonatelor pentru logica jocului
+//returning X and Y coordinates for the game logic
 int Snake::getY()
 {
     return head.y;

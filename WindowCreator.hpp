@@ -1,9 +1,4 @@
-//
-//  WindowCreator.hpp
-//  Proiect
-//
-//  Created by Lysander Pitu on 24.03.2022.
-//
+
 #pragma once
 #ifndef WindowCreator_hpp
 #define WindowCreator_hpp
@@ -14,14 +9,14 @@
 
 #endif /* WindowCreator_hpp */
 
-class CreareFereastra
+class CreateWindow
 {
 private:
-    SDL_Window* window; //fereastra jocului
-    SDL_Renderer* renderer; //motorul de randare
+    SDL_Window* window; //game window
+    SDL_Renderer* renderer; //renderer
     char scoreText[20];
 public:
-    CreareFereastra(const char*, int, int);
+    CreateWindow(const char*, int, int);
     void clear();
     void present();
     void drawColor(int, int, int, int);

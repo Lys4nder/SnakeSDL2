@@ -1,15 +1,8 @@
-//
-//  Food.cpp
-//  Proiect
-//
-//  Created by Lysander Pitu on 25.03.2022.
-//
-
 #include "Food.hpp"
 
-//constructorul care copiaza coordonatele x si y, inaltimea texturii - h si latimea texturii - w
-//variabila instance este o clasa de tipul SDL_Rect, adica un "rectangle" care are
-//coordonatele x,y, inaltimea h (height) si latimea w (width)
+
+//this constructor copies the x and y coordinates, h and w are the height and width of the texture
+//the instance variable is a variable that belongs to the SDL_Rect class
 Food::Food(int x, int y, int h, int w)
 {
     instance.x=x;
@@ -18,14 +11,14 @@ Food::Food(int x, int y, int h, int w)
     instance.w=w;
 }
 
-//setarea culorii marului si randarea lui
+//sets the color of the apple using RGBA, i chose purple :D
 void Food::display(SDL_Renderer* renderer)
 {
     SDL_SetRenderDrawColor(renderer, 123, 56, 201, 1);
     SDL_RenderFillRect(renderer, &instance);
 }
 
-//updatarea pozitiei noului mar
+//updating the position of the newly generated apple
 void Food::updatePos(SDL_Renderer* renderer)
 {
     instance.x=rand()%60*10;
@@ -33,7 +26,7 @@ void Food::updatePos(SDL_Renderer* renderer)
     display(renderer);
 }
 
-//returnarea coordonatelor X si Y pentru logica jocului;
+//returning the X and Y coordinates for the game logic
 int Food::getX()
 {
     return instance.x;

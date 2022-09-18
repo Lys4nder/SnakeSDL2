@@ -1,8 +1,5 @@
 //
-//  Food.hpp
-//  Proiect
-//
-//  Created by Lysander Pitu on 25.03.2022.
+//  Created by Lys4nder on 25.03.2022.
 //
 #pragma once
 #ifndef Food_hpp

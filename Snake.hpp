@@ -1,10 +1,3 @@
-//
-//  Snake.hpp
-//  Proiect
-//
-//  Created by Lysander Pitu on 27.03.2022.
-//
-
 #pragma once
 #ifndef Snake_hpp
 #define Snake_hpp

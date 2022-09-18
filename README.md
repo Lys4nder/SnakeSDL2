@@ -1,7 +1,5 @@
 # SnakeSDL2
-A simple snake game made for a project in college. 
-
-The game was made using C++ with the help of SDL2 library.
+A simple snake game made using C++ and SDL2 lib for a project in college. 
 
 For more information about how SDL2 works and how to install it, visit Lazyfoo's tutorial.
 https://lazyfoo.net/tutorials/SDL/
